@@ -1,0 +1,108 @@
+==============================***********************************=================================
+==============================***********************************=================================
+Topics covered in this file:
+A. Servlet
+B. Tomcat
+==============================***********************************=================================
+==============================***********************************=================================
+Date: 11-September-2022
+Owner: Gaurav Verma
+==============================***********************************=================================
+
+---------------------------------------------Servlets---------------------------------------------
+
+1. It is a java program that resides in server and runs in server.
+2. It doesn't have main() => rather has life cycle methods (init(), service(), destroy()), which are called by
+   web container when requests come to servlet
+    a. init() - called for first request only
+    b. service() - called for all requests
+    c. destroy() - called when server is shut down or application is un-deployed from server
+3. Important packages for Servlet
+     - javax.servlet (or jakarta.servlet)
+     - javax.servlet.http (or jakarta.servlet.http)
+4. Difference between javax and jakarta:
+     - javax (used for Tomcat 9 or below)
+     - jakarta (used for Tomcat 10 or above)
+5. Servlet needs to be 'PUBLIC' (always)
+   (so that web-container can create its object and call life-cycle methods when servlet is called)
+6. List of 'classes' in "javax.servlet" package:
+    a. GenericServlet -
+        - abstract class
+        - implements 'javax.servlet.Servlet' interface
+        - it is extended in servlets in place of implementing 'javax.servlet.Servlet' interface,
+          bcz prevents us from overriding all abstract methods of 'javax.servlet.Servlet' interface
+          hence we need to override only 'service()'
+    b. ServletInputStream
+    c. ServletOutputStream
+    d. ServletException
+    e. UnavailableException
+7. List of 'interfaces' in "javax.servlet" package:
+    a. Servlet - has Life cycle methods; hence every servlet must implement this interface;
+    b. ServletRequest
+    c. ServletResponse
+    d. ServletConfig
+    e. ServletContext
+    f. RequestDispatcher
+    g. SingleThreadModel
+8. List of 'classes' in "javax.Servlet.http" or "jakarta.Servlet.http":
+    a. HttpServlet
+    b. Cookie
+9. List of 'interfaces' in "javax.Servlet.http" or "jakarta.Servlet.http":
+    a. HttpServletRequest
+    b. HttpServletResponse
+    c. HttpSession
+10. Important methods in "jakarta.servlet.Servlet" interface:
+    a. public abstract void init (ServletConfig) throws ServletException;
+    b. public abstract ServletConfig getServletConfig (ServletConfig);
+    c. public abstract void service (ServletRequest, ServletResponse) throws ServletException, IOException;
+    d. public abstract String getServletInfo ();
+    e. public abstract void destroy ();
+11. Important methods in "jakarta.servlet.ServletResponse" interface:
+        a. public abstract ServletOutputStream getOutputStream () throws IOException;
+        b. public abstract PrintWriter getWriter () throws IOException;
+where,
+- abstract means: definition has to be provided by calling class, i.e., they are only declared in the
+- Overriding rules for abstract methods:
+    a. Access modifier must be lower or same as that defined in its corresponding interface
+    b. return type must be same except for sub-class
+- Method names with 'stream' => for byte streams (transfers data in bytes)
+- Method names with 'writer/reader' => for character streams (transfers data in characters)
+- Stream means: A stream is created b/w server and web-client to transfer data
+11. Root folder has following folder structure:
+    Project
+    =======
+     - src (.java files)
+     - WEB-INF (classes (.class files), lib (.jar files), web.xml)
+     - html/css/js
+     - data (images, audio, video, etc.)
+
+
+==============================***********************************=================================
+==============================***********************************=================================
+
+---------------------------------------------Tomcat---------------------------------------------
+
+1. Link to download: https://tomcat.apache.org
+2. Details:
+    Username: admin
+    Password: admin
+3. Location
+    Windows: C:\Program Files\Java\jdk-16.0.2\bin
+    MacOs:
+4. To start Tomcat Server:
+    Windows: Click on Tomcat icon (Desktop or from place of installation)
+    MacOS:
+5. Link to open Tomcat homepage: http://localhost:8080
+6. To change port number:
+    Windows: Open C:\Program Files\Apcahe Software Foundation\Tomcat 10.0\conf\server.xml  => Connector Port: 8080/8082/etc
+    MacOs:
+7. To open web-application manager:
+    http://localhost:8080 ==> Manager App (button) ==> Enter username and pwd
+8. Setting environment variables:
+    Windows:
+     - Windows button (Taskbar) => Search Environment variables =>
+     - Edit System env. variables => Advanced tab => Env.variables (button) =>
+     - Select class path => Click Edit (button) => Click new (button) =>
+     - Paste: C:/Program files/Apcahe Software Foundation/Tomcat 10.0/lib/servlet-api.jar
+    MacOS:
+9.
